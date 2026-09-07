@@ -32,17 +32,42 @@ RFC 9106 test-vector suite.
 
 ## Installation
 
+### Swift Package Manager (from GitHub)
+
 Add the package in `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(path: "../argon2-swift")   // or .package(url: "...", from: "0.1.0")
+    .package(url: "https://github.com/colt3k/argon2-swift.git", branch: "main"),
 ],
 targets: [
     .target(name: "MyTarget", dependencies: [
         .product(name: "Argon2", package: "argon2-swift"),
     ])
 ]
+```
+
+Then resolve the dependency:
+
+```
+swift package resolve
+```
+
+> Note: no release tags have been published yet, so pin to `branch: "main"`.
+> Once a version is tagged, prefer a range such as `from: "0.1.0"` instead.
+
+### Xcode
+
+In Xcode, choose **File → Add Package Dependencies…** and enter
+`https://github.com/colt3k/argon2-swift`, then add the `Argon2` product to
+your target.
+
+### Local path
+
+If you have the repository checked out next to your project:
+
+```swift
+.package(path: "../argon2-swift")
 ```
 
 ## Usage
